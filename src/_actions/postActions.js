@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  POST_DETAIL_FAIL,
+  POST_DETAIL_SUCCESS,
+  POST_DETAIL_REQUEST,
   POST_LIST_FAIL,
   POST_LIST_REQUEST,
   POST_LIST_SUCCESS,
@@ -21,4 +24,20 @@ const listPost = () => async (dispatch) => {
   }
 };
 
-export { listPost };
+const searchPost = (dataToSubmit) => async (dispatch) => {
+  dispatch({ type: POST_DETAIL_REQUEST, payload: dataToSubmit });
+  try {
+    await axios
+      .post("http://localhost:8000/posts?format=json", dataToSubmit)
+      .then((response) => {
+        dispatch({ type: POST_DETAIL_SUCCESS, payload: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (error) {
+    dispatch({ type: POST_DETAIL_FAIL, payload: error.message });
+  }
+};
+
+export { listPost, searchPost };
