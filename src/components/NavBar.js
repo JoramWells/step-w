@@ -3,12 +3,15 @@ import React from "react";
 import { withRouter,Link } from "react-router-dom";
 import axios from 'axios'
 const { Search } = Input;
-async function getData(){
+
+function NavBar(props) {
+
+  async function getData(){
     await axios.get('http://localhost:8000/posts?format=json').then(response=>{
         console.log(response.data)
     }).catch(err=>console.log(err))
  }
-function NavBar(props) {
+
   const onSearch = () => {
     message.info("Hey guy");
     getData()
