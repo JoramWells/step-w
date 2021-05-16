@@ -1,11 +1,17 @@
 import { Input, Menu, message, Space } from "antd";
 import React from "react";
 import { withRouter,Link } from "react-router-dom";
-
+import axios from 'axios'
 const { Search } = Input;
+async function getData(){
+    await axios.get('http://localhost:8000/posts?format=json').then(response=>{
+        console.log(response.data)
+    }).catch(err=>console.log(err))
+ }
 function NavBar(props) {
   const onSearch = () => {
     message.info("Hey guy");
+    getData()
     setTimeout(() => {
       props.history.push("/search");
     });
