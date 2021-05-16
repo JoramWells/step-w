@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import {
   postListReducer,
 
-} from "./_reducers/postListReducer";
+} from "./_reducers/postReducer";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 
 
