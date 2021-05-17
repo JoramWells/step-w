@@ -28,7 +28,7 @@ const searchPost = (dataToSubmit) => async (dispatch) => {
   dispatch({ type: POST_DETAIL_REQUEST, payload: dataToSubmit });
   try {
     await axios
-      .post("http://localhost:8000/posts?format=json", dataToSubmit)
+      .post("http://localhost:8000/getDetail?format=json", dataToSubmit)
       .then((response) => {
         dispatch({ type: POST_DETAIL_SUCCESS, payload: response.data });
       })

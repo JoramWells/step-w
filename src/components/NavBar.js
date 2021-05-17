@@ -1,15 +1,16 @@
 import { Input, Menu, message, Space } from "antd";
 import React from "react";
 import { withRouter,Link } from "react-router-dom";
-import axios from 'axios'
+import { useDispatch } from "react-redux";
+import {searchPost} from '../_actions/postActions'
 const { Search } = Input;
 
+
 function NavBar(props) {
+  const dispatch = useDispatch()
 
   async function getData(){
-    await axios.get('http://localhost:8000/posts?format=json').then(response=>{
-        console.log(response.data)
-    }).catch(err=>console.log(err))
+    await dispatch(searchPost({keyword:"glad", min_videos:"2"}))
  }
 
   const onSearch = () => {
